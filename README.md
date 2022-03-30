@@ -8,7 +8,7 @@ This a simple subscription platform(only RESTful APIs with MySQL) in which users
 ### Downloading the Project
 
 
-This framework requires PHP 8.0 and mysql database
+This project requires PHP 7.* and uses Laravel 8
 .  
 You can simply clone  ``simple-subscription-platform`` like below on your git bash
 
