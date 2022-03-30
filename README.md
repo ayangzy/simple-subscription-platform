@@ -27,7 +27,8 @@ cp .env.example .env
 ```
 
 ### Please configure your Mail driver in the env to make the application work correctly.
-You have to also configure your mail drivers in the .env file, in my own case i made use of mailtrap for testing purposes.
+You have to also configure your mail drivers in the .env file for mail sending, don't also forget to set your  Queue Connection as ``QUEUE_CONNECTION=database``
+
 
 ### Generating app key
 Run the following commands each on the project 
