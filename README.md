@@ -30,7 +30,7 @@ cp .env.example .env
 You have to also configure your mail drivers in the .env file, in my own case i made use of mailtrap for testing purposes.
 
 ### Generating app key
-Run the following commands either on the project 
+Run the following commands each on the project 
 ```
 php artisan key:generate
 ```
