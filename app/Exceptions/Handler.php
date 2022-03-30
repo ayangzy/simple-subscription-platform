@@ -2,11 +2,18 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Traits\ApiResponses;
 use Throwable;
+use Psy\Exception\FatalErrorException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponses;
     /**
      * A list of the exception types that are not reported.
      *
@@ -34,8 +41,48 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->reportable(function (Throwable $exception, $request) {
+            return $this->handleException($exception, $request);
         });
+    }
+
+
+     /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     *
+     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Throwable
+     */
+    public function handleException(Throwable $exception, $request)
+    {
+        if ($exception instanceof NotFoundHttpException) {
+            return $this->notFoundAlert('We cannot access this resource you\'re looking for', 'resource_not_found');
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            return $this->notFoundAlert('Unable to locate model resource', 'model_not_found');
+        }
+
+        if ($exception instanceof HttpException) {
+            return $this->httpErrorAlert($exception->getMessage(), $exception);
+        }
+
+        if ($exception instanceof FatalThrowableError) {
+            return $this->serverErrorAlert('An error occurred processing your request, Try again later... ', $exception);
+        }
+
+        if ($exception instanceof FatalErrorException) {
+            return $this->serverErrorAlert('An error occurred processing your request, Try again later... ', $exception);
+        }
+
+        if ($exception instanceof ValidationException) {
+            return $this->formValidationErrorAlert($exception->errors());
+        }
+
+        return $this->serverErrorAlert('An error occurred processing your request, Try again later... ', $exception);
     }
 }
