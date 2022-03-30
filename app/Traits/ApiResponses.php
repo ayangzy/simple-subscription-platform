@@ -26,8 +26,8 @@ trait ApiResponses
         }
 
         $response = [
-            'statusCode' => config('hank.status_codes.server_error'),
-            'statusText' => config('hank.status_texts.server_error'),
+            'statusCode' => config('subscription.status_codes.server_error'),
+            'statusText' => config('subscription.status_texts.server_error'),
             'message' => $message,
         ];
 
@@ -35,7 +35,7 @@ trait ApiResponses
             $response['exception'] = $exception->getMessage();
         }
 
-        return Response::json($response, config('hank.status_codes.server_error'));
+        return Response::json($response, config('subscription.status_codes.server_error'));
     }
 
     /**
@@ -49,8 +49,8 @@ trait ApiResponses
     public function formValidationErrorAlert($errors, $data = null): JsonResponse
     {
         $response = [
-            'statusCode' => config('hank.status_codes.validation_failed'),
-            'statusText' => config('hank.status_texts.validation_failed'),
+            'statusCode' => config('subscription.status_codes.validation_failed'),
+            'statusText' => config('subscription.status_texts.validation_failed'),
             'message' => 'Whoops. Validation failed.',
             'validationErrors' => $errors,
         ];
@@ -59,7 +59,7 @@ trait ApiResponses
             $response['data'] = $data;
         }
 
-        return Response::json($response, config('hank.status_codes.validation_failed'));
+        return Response::json($response, config('subscription.status_codes.validation_failed'));
     }
 
     /**
@@ -74,7 +74,7 @@ trait ApiResponses
     public function notFoundAlert($message, $statusText = 'not_found', $data = null): JsonResponse
     {
         $response = [
-            'statusCode' => config('hank.status_codes.not_found'),
+            'statusCode' => config('subscription.status_codes.not_found'),
             'statusText' => $statusText,
             'message' => $message,
         ];
@@ -83,7 +83,7 @@ trait ApiResponses
             $response['data'] = $data;
         }
 
-        return Response::json($response, config('hank.status_codes.not_found'));
+        return Response::json($response, config('subscription.status_codes.not_found'));
     }
 
     /**
@@ -97,8 +97,8 @@ trait ApiResponses
     public function validationErrorAlert($message, $data = null): JsonResponse
     {
         $response = [
-            'statusCode' => config('hank.status_codes.validation_failed'),
-            'statusText' => config('hank.status_texts.validation_failed'),
+            'statusCode' => config('subscription.status_codes.validation_failed'),
+            'statusText' => config('subscription.status_texts.validation_failed'),
             'message' => $message,
         ];
 
@@ -106,7 +106,7 @@ trait ApiResponses
             $response['data'] = $data;
         }
 
-        return Response::json($response, config('hank.status_codes.validation_failed'));
+        return Response::json($response, config('subscription.status_codes.validation_failed'));
     }
 
     /**
@@ -121,7 +121,7 @@ trait ApiResponses
     public function badRequestAlert($message, $statusText = 'bad_request', $data = null): JsonResponse
     {
         $response = [
-            'statusCode' => config('hank.status_codes.bad_request'),
+            'statusCode' => config('subscription.status_codes.bad_request'),
             'statusText' => $statusText,
             'message' => $message,
         ];
@@ -130,7 +130,7 @@ trait ApiResponses
             $response['data'] = $data;
         }
 
-        return Response::json($response, config('hank.status_codes.bad_request'));
+        return Response::json($response, config('subscription.status_codes.bad_request'));
     }
 
     /**
@@ -144,8 +144,8 @@ trait ApiResponses
     public function successResponse($message, $data = null): JsonResponse
     {
         $response = [
-            'statusCode' => config('hank.status_codes.success'),
-            'statusText' => config('hank.status_texts.success'),
+            'statusCode' => config('subscription.status_codes.success'),
+            'statusText' => config('subscription.status_texts.success'),
             'message' => $message,
         ];
 
@@ -153,7 +153,7 @@ trait ApiResponses
             $response['data'] = $data;
         }
 
-        return Response::json($response, config('hank.status_codes.success'));
+        return Response::json($response, config('subscription.status_codes.success'));
     }
 
     /**
@@ -167,8 +167,8 @@ trait ApiResponses
     public function createdResponse($message, $data = null): JsonResponse
     {
         $response = [
-            'statusCode' => config('hank.status_codes.created'),
-            'statusText' => config('hank.status_texts.created'),
+            'statusCode' => config('subscription.status_codes.created'),
+            'statusText' => config('subscription.status_texts.created'),
             'message' => $message,
         ];
 
@@ -176,7 +176,7 @@ trait ApiResponses
             $response['data'] = $data;
         }
 
-        return Response::json($response, config('hank.status_codes.created'));
+        return Response::json($response, config('subscription.status_codes.created'));
     }
 
 
@@ -220,7 +220,7 @@ trait ApiResponses
     public function conflictedRequestAlert($message, $statusText = 'conflicted', $data = null): JsonResponse
     {
         $response = [
-            'statusCode' => config('hank.status_codes.conflicted'),
+            'statusCode' => config('subscription.status_codes.conflicted'),
             'statusText' => $statusText,
             'message' => $message,
         ];

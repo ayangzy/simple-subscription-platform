@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\subscriptions\UserSubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('posts/create', [PostController::class, 'store'])->name('create.post');
+Route::post('user/subscription', [UserSubscriptionController::class, 'subscribe'])->name('subscription');

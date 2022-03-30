@@ -9,9 +9,10 @@ class Subscription extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function website()
     {
         return $this->belongsTo(Website::class);
     }
-    
 }
